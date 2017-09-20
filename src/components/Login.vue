@@ -1,52 +1,83 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div class="login">
+    <form @submit.prevent="login">
+      <label class="form-item">
+        Mail
+        <input
+          class="form-input"
+          type="text"
+          :value="formData.mail"
+          @change="change('mail', $event)">
+        </input>
+      </label>
+
+      <label class="form-item">
+        Password
+        <input
+          class="form-input"
+          type="password"
+          :value="formData.password"
+          @change="change('password', $event)">
+        </input>
+      </label>
+
+      <input
+        type="submit"
+        value="Submit"
+        :disabled="!isReadyForLogin">
+      </input>
+    </form>
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from 'vuex'
+import { LOGIN, UPDATE } from '../store/modules/user'
+
 export default {
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  computed: {
+    ...mapState('user', {
+      formData: state => {
+        return {
+          mail: state.mail,
+          password: state.password
+        }
+      }
+    }),
+    ...mapGetters('user', [
+      'isReadyForLogin'
+    ])
+  },
+  methods: {
+    ...mapActions('user', {
+      login: LOGIN
+    }),
+    change (field, event) {
+      this.$store.commit('user/UPDATE', {
+        field,
+        value: event.target.value
+      })
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+.login {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.form-item {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+.form-input {
+  margin-left: 20px;
 }
 </style>

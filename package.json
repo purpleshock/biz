@@ -11,6 +11,8 @@
     "test": "NODE_ENV=test ava"
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "global": "^4.3.2",
     "vue": "^2.4.4",
     "vue-router": "^2.7.0",
     "vuex": "^2.4.0",
