@@ -5,8 +5,8 @@
   "author": "ericyan <eric7578@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "start": "node build/dev-server.js",
+    "dev": "AP_HOST=http://localhost:7070 node build/dev-server.js",
+    "start": "AP_HOST=http://localhost:7070 node build/dev-server.js",
     "build": "node build/build.js",
     "test": "NODE_ENV=test ava"
   },

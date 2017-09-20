@@ -1,3 +1,4 @@
+var webpack = require('webpack')
 var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
@@ -62,5 +63,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.AP_HOST': JSON.stringify(process.env.AP_HOST)
+    })
+  ]
 }
