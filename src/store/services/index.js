@@ -8,6 +8,6 @@ export function setupAxios () {
   // setup default token
   const token = tokenApi.getToken()
   if (token) {
-    axios.defaults.headers.common.Authorization = `JWT ${token}`
+    tokenApi.setToken(token)
   }
 }

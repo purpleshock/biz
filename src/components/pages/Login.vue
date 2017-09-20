@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <form @submit.prevent="login">
+    <form @submit.prevent="submit">
       <label class="form-item">
         Mail
         <input
@@ -32,7 +32,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
-import { LOGIN, UPDATE } from '../store/modules/user'
+import { LOGIN, UPDATE } from '../../store/modules/user'
 
 export default {
   computed: {
@@ -57,6 +57,10 @@ export default {
         field,
         value: event.target.value
       })
+    },
+    async submit () {
+      await this.login()
+      this.$router.push('/dashboard')
     }
   }
 }

@@ -5,4 +5,5 @@ export function login (mail, password) {
     mail,
     password
   })
+  .then(response => response.data)
 }

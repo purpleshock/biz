@@ -1,4 +1,5 @@
 import * as userApi from '../services/user'
+import * as tokenApi from '../services/token'
 
 export const UPDATE = 'UPDATE'
 export const LOGIN = 'LOGIN'
@@ -15,9 +16,10 @@ const mutations = {
 }
 
 const actions = {
-  async [LOGIN] ({ commit, state }) {
+  async [LOGIN] ({ dispatch, commit, state }) {
     const { mail, password } = state
     const userInfo = await userApi.login(mail, password)
+    await tokenApi.setToken(userInfo.token)
     commit(LOGIN, userInfo)
   }
 }
