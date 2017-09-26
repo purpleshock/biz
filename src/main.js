@@ -7,7 +7,9 @@ import store from './store'
 import { setupAxios } from './store/services'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
+import VModal from 'vue-js-modal'
 
+Vue.use(VModal)
 Vue.component('icon', Icon)
 
 Vue.config.productionTip = false
