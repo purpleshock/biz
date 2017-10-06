@@ -8,9 +8,12 @@ import { setupAxios } from './store/services'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import VModal from 'vue-js-modal'
+import ClickOutside from './plugins/ClickOutside'
 
 Vue.use(VModal)
 Vue.component('icon', Icon)
+
+Vue.use(ClickOutside)
 
 Vue.config.productionTip = false
 
