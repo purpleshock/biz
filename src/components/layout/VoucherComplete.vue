@@ -41,7 +41,9 @@ export default {
       }
     },
     clear () {
-      this.$emit('clear')
+      if (this.hasSuggest) {
+        this.$emit('clear')
+      }
     }
   }
 }
