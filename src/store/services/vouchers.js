@@ -17,3 +17,13 @@ export function getVoucherSuggests (term) {
   return axios.get(`/api/v1/vouchers?${query}`)
   .then(response => response.data)
 }
+
+export function getVoucher (code) {
+  return axios.get(`/api/v1/vouchers/${code}`)
+  .then(response => response.data)
+}
+
+export function getAvailableStatus (code) {
+  return axios.get(`/api/v1/vouchers/status`)
+  .then(response => response.data)
+}
