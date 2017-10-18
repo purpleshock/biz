@@ -1,17 +1,22 @@
 <template>
   <layout>
-    <h2>{{$route.params.voucherCode}}</h2>
+    <h2>{{voucher.code}}</h2>
   </layout>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import { GET_VOUCHER } from '../../store/modules/vouchers'
 import Layout from '../layout/Layout'
 
 export default {
   components: {
     Layout
+  },
+  computed: {
+    ...mapState('vouchers', {
+      voucher: 'detail'
+    })
   },
   methods: {
     ...mapActions('vouchers', {
@@ -22,7 +27,8 @@ export default {
     this.getVoucher(this.$route.params.voucherCode)
   },
   updated () {
-    this.getVoucher(this.$route.params.voucherCode)
+    debugger
+    // this.getVoucher(this.$route.params.voucherCode)
   }
 }
 </script>
